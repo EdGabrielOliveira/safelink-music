@@ -9,13 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "ffmpeg-static": "^5.2.0",
     "next": "15.1.7",
-    "node-fetch": "^3.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sanitize-filename": "^1.6.3",
-    "youtube-dl": "^3.5.0",
     "ytdl-core": "^4.11.5"
   },
   "devDependencies": {
