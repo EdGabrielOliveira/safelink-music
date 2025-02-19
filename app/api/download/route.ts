@@ -17,7 +17,6 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    // Comando para obter a URL de download do áudio e o título do vídeo
     const command = `yt-dlp -i --extract-audio --get-url --audio-quality 0 --audio-format mp3 --get-title "${url}"`;
     console.log(`Executando comando: ${command}`);
     const { stdout, stderr } = await execPromise(command, { env: { ...process.env, PYTHONIOENCODING: "utf-8" } });
@@ -36,12 +35,12 @@ export async function GET(req: NextRequest) {
       throw new Error("URL de download não encontrada");
     }
 
-    // Sanitizar o título para ser usado como nome de arquivo
     const sanitizedTitle = sanitizeFileName(title);
 
     return NextResponse.json({ downloadUrl: `${audioUrl}?title=${sanitizedTitle}`, title: sanitizedTitle });
   } catch (error) {
     console.error(`Erro ao processar o download: ${(error as Error).message}`);
+    console.error(`Detalhes do erro: ${(error as Error).stack}`);
     return NextResponse.json(
       { error: "Erro ao processar o download", details: (error as Error).message },
       { status: 500 },
