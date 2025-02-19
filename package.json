@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+     "postinstall": "curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp-linux.zip -o yt-dlp.zip && unzip yt-dlp.zip && chmod +x yt-dlp && mv yt-dlp /usr/local/bin/yt-dlp",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

@@ -4,7 +4,6 @@ import { promisify } from "util";
 
 const execPromise = promisify(exec);
 
-// Função para sanitizar o nome do arquivo
 function sanitizeFileName(fileName: string) {
   return fileName.replace(/[\/:*?"<>|\\]/g, "_").replace(/[\x00-\x1F\x80-\x9F]/g, "");
 }
@@ -17,7 +16,7 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const ytDlpPath = require.resolve("yt-dlp");
+    const ytDlpPath = "/usr/local/bin/yt-dlp";
     const command = `${ytDlpPath} -i --extract-audio --get-url --audio-quality 0 --audio-format mp3 --get-title "${url}"`;
     const { stdout, stderr } = await execPromise(command, { env: { ...process.env, PYTHONIOENCODING: "utf-8" } });
 
