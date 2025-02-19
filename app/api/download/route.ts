@@ -28,8 +28,6 @@ export async function GET(req: NextRequest) {
     const output = stdout.trim().split("\n");
     const title = output[0];
     const audioUrl = output[1];
-    console.log(`Título do vídeo obtido: ${title}`);
-    console.log(`URL de download obtida: ${audioUrl}`);
 
     if (!audioUrl) {
       throw new Error("URL de download não encontrada");
