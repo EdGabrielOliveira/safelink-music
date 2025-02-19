@@ -17,8 +17,8 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const command = `yt-dlp -i --extract-audio --get-url --audio-quality 0 --audio-format mp3 --get-title "${url}"`;
-    console.log(`Executando comando: ${command}`);
+    const ytDlpPath = require.resolve("yt-dlp");
+    const command = `${ytDlpPath} -i --extract-audio --get-url --audio-quality 0 --audio-format mp3 --get-title "${url}"`;
     const { stdout, stderr } = await execPromise(command, { env: { ...process.env, PYTHONIOENCODING: "utf-8" } });
 
     if (stderr) {
